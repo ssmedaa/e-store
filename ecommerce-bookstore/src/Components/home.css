@@ -1,6 +1,7 @@
 .home-inventory {
     padding: 20px;
     background-color: #f9f9f9;
+    height: 100vh;
   }
   
   .home-inventory h2 {
@@ -9,7 +10,7 @@
   }
   
   .grid-container {
-    display: grid;
+    display: ruby;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
   }
