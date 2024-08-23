@@ -89,9 +89,9 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
                 {(!cart || !cart.length) && (
                   <div className="cart__empty">
                     <img className="cart__empty--img" src={EmptyCart} alt="" />
-                    <h2>You don't have any cards in your cart!</h2>
+                    <h2>You don't have any books in your cart!</h2>
                     <Link to="/books">
-                      <button className="btn">Browse Cards</button>
+                      <button className="btn">Browse Books</button>
                     </Link>
                   </div>
                 )}
