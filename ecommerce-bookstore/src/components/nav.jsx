@@ -21,7 +21,7 @@ function Nav({numberOfItems}) {
           </li>
           <li className="nav__list">
             <Link to="/Books" className="nav__link">
-              Cards
+              Books
             </Link>
           </li>
            <button className="btn__menu" onClick={openMenu}>
@@ -46,7 +46,7 @@ function Nav({numberOfItems}) {
      <Link to="/" className="menu__link" onClick={closeMenu} >Home</Link>
      </li>
        <li className="menu__list">
-     <Link to="/books" className="menu__link" onClick={closeMenu}>Cards</Link>
+     <Link to="/books" className="menu__link" onClick={closeMenu}>Books</Link>
      </li>
        <li className="menu__list">
      <Link to="/cart" className="menu__link" onClick={closeMenu}>Cart</Link>
