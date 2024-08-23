@@ -1,5 +1,5 @@
 export const books = [
-    {
+{
         id: 1,
         title: "Atomic Habits by James Clear",
         url: "https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg",
@@ -7,7 +7,10 @@ export const books = [
         salePrice: 15.99,
         rating: 5,
         stripeID: "price_1OxDDtDH16DQa3RUr6Cx0O4z",
+<<<<<<< Updated upstream
         category: "Self-Help",
+=======
+>>>>>>> Stashed changes
         summary1: "This best-selling book by James Clear provides practical strategies for forming good habits, breaking bad ones, and mastering the tiny behaviors that lead to remarkable results.",
         summary2: "Originally priced at $27.99, it's now available for $15.99, making it an affordable investment in self-improvement."
     },
