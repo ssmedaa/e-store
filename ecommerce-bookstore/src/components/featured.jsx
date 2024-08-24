@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Book from "./ui/book";
 import {books} from "../data"
-import Assets from "../assets/westbrookCard.jpg"
 function Features() {
 console.log(books)
 

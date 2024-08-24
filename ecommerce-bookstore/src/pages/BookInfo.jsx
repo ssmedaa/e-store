@@ -43,7 +43,7 @@ function bilal(item, event){
                 <FontAwesomeIcon icon="arrow-left" />
               </Link>
               <Link to="/books" className="book__link">
-                <h2 className="book__selected--title--top">Cards</h2>
+                <h2 className="book__selected--title--top">Books</h2>
               </Link>
             </div>
             <div className="book__selected">
@@ -87,7 +87,7 @@ function bilal(item, event){
         <div className="books__container">
           <div className="row">
             <div className="book__selected--top">
-              <h2 className="book__selected--title--top">Recommended Cards</h2>
+              <h2 className="book__selected--title--top">Recommended Books</h2>
               </div>
             <div className="books">
             <BestCards  id={id} books={books}></BestCards>

@@ -45,7 +45,7 @@ const Books = ({ books: initalBooks }) => {
             <div className="row">
               <div className="books__header">
                 <h2 className="section__title books__header--title">
-                  All Cards
+                  All Books
                 </h2>
                 <select
                   id="filter"
