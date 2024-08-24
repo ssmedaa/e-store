@@ -1,0 +1,1 @@
+SELECT * FROM harryPotter.manage_book;
