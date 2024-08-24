@@ -6,6 +6,7 @@ import item1 from "./Assets/item1.png";
 import Footer from './Components/Footer';
 import { useState } from 'react';
 import Login from './Components/login';
+import SignInSignUp from './Components/SignInSignUp';
 
 
 
@@ -111,32 +112,47 @@ function App() {
     },
   ];
   const [filteredItems, setFilteredItems] = useState(sampleItems);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleSearch = (searchTerm, category) => {
-    const filtered = sampleItems.filter(item => {
-      if(searchTerm === null){
-        return;
+    const handleSearch = (searchTerm) => {
+        const filtered = sampleItems.filter(item => 
+            item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.category.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredItems(filtered);
+    };
+
+    const handleCategorySelect = (category) => {
+        setFilteredItems(sampleItems.filter(item => item.category === category));
+    };
+
+    const handleLogin = (email, password) => {
+      if (email === "xyz@gmail.com" && password === "password123") {
+        setIsAuthenticated(true);
+        return true;
       }
-      const matchesSearchTerm = searchTerm === '' || item.name.toLowerCase().includes(searchTerm.toLowerCase()) || item.category.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      return matchesSearchTerm;
-    });
-    setFilteredItems(filtered);
-  };
-
-  const handleCategorySelect = (category) => {
-    // Placeholder function, replace with your own logic to filter items by category
-    setFilteredItems(sampleItems.filter(item => item.category === category));
-  };  // This is a placeholder function, you would replace it with your own logic to filter items by category when the dropdown is clicked.
-
+      return false;
+    };
+  
+    const handleSignUp = (email, password) => {
+      // Handle sign-up logic (e.g., API call to register user)
+      // For now just log the user in
+      setIsAuthenticated(true);
+      return true;
+    };
   
 
   return (
     <div className="App">
-      <Navbar onSearch={handleSearch} onCategorySelect={(category) => handleCategorySelect('', category)} />
-      <HomeInventory items={filteredItems} style={{padding: '1.5rem'}}/>
-      <Login/>
-      <Footer/>
+      {!isAuthenticated ? (
+        <SignInSignUp onLogin={handleLogin} onSignUp={handleSignUp}/>
+      ) : (
+        <>
+          <Navbar onSearch={handleSearch} onCategorySelect={handleCategorySelect} />
+          <HomeInventory items={filteredItems} style={{ padding: '1.5rem' }} />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
