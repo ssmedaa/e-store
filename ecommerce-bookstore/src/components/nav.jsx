@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CardLogo from "../assets/BasketballLogo.png";
+import CardLogo from "../assets/book store (1).png";
 import { Link } from "react-router-dom";
 function Nav({numberOfItems}) {
   function openMenu(){
@@ -28,8 +28,7 @@ function Nav({numberOfItems}) {
           <FontAwesomeIcon icon="bars"></FontAwesomeIcon>
         </button>
        
-        
-           <li className="nav__icon">
+<li className="nav__icon">
         <Link to="/cart" className="nav__link"> 
          <FontAwesomeIcon icon="shopping-cart"></FontAwesomeIcon>
           

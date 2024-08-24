@@ -102,7 +102,8 @@ button:active {
 }
 
 .logo {
-  width: 160px;
+  height: 140px;
+  width: 140px;
 }
 
 .nav__container {
@@ -872,3 +873,58 @@ select {
   }
 }
 
+/* Container for the entire filter section */
+.filter__options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Styling for the category filter */
+.filter__categories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.filter__categories h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.filter__categories div {
+  margin-bottom: 8px;
+}
+
+.filter__categories label {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+/* Styling for the dropdown (sorting filter) */
+#filter {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Make the dropdown and category filter responsive */
+@media (max-width: 768px) {
+  .filter__options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #filter {
+    margin-top: 15px;
+    width: 100%;
+  }
+}
