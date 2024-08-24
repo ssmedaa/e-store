@@ -527,12 +527,7 @@ BOOKS PAGE
 **
 */
 
-#books__body {
-  background-color: rgba(115, 66, 214, 0.1);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+
 
 #books__main {
   flex: 1;
@@ -872,29 +867,74 @@ select {
     padding-left: 0;
   }
 }
+/* 
+**
 
-/* Container for the entire filter section */
-.filter__options {
+BOOKS PAGE
+
+**
+*/
+
+#books__body {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#books__main {
+  flex: 1;
+  background-color: rgb(248, 249, 250);
+}
+
+/* Container for the header, including title, search bar, filter, and sort */
+.books__header {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
 }
 
-/* Styling for the category filter */
-.filter__categories {
+.books__header--title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.filter__options {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
-  padding: 10px;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Search Bar Styling */
+.search__bar {
+  flex: 1; /* Make the search bar container take up remaining space */
+}
+
+.search__bar input {
+  width: 100%; /* Ensure the input takes up the full width of the container */
+  max-width: 900px; /* Set a larger max-width for wider screens */
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box; /* Ensure padding doesn't affect the width */
+}
+
+/* Category Filter Styling */
+.filter__categories {
+  padding: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  min-width: 200px; /* Ensure the filter section maintains a reasonable size */
 }
 
 .filter__categories h4 {
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .filter__categories div {
@@ -906,25 +946,30 @@ select {
   font-size: 14px;
 }
 
-/* Styling for the dropdown (sorting filter) */
+/* Sorting Dropdown Styling */
 #filter {
-  padding: 8px;
+  padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #fff;
   cursor: pointer;
+  min-width: 150px; /* Set a minimum width for consistency */
 }
 
-/* Make the dropdown and category filter responsive */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .filter__options {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   #filter {
     margin-top: 15px;
+    width: 100%;
+  }
+
+  .search__bar input {
     width: 100%;
   }
 }

@@ -3,6 +3,7 @@ import Book from "../components/ui/book";
 
 const Books = ({ books: initialBooks }) => {
   const [books, setBooks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   // Example categories
@@ -15,12 +16,21 @@ const Books = ({ books: initialBooks }) => {
   function filterBooks(filter) {
     let filteredBooks = [...initialBooks];
 
+    // Apply category filter
     if (selectedCategories.length > 0) {
       filteredBooks = filteredBooks.filter((book) =>
         selectedCategories.includes(book.category)
       );
     }
 
+    // Apply search filter
+    if (searchQuery) {
+      filteredBooks = filteredBooks.filter((book) =>
+        book.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Apply sorting
     switch (filter) {
       case "LOW_TO_HIGH":
         return setBooks(
@@ -33,9 +43,9 @@ const Books = ({ books: initialBooks }) => {
       case "HIGH_TO_LOW":
         return setBooks(
           filteredBooks.sort(
-            (a, b) =>
-              (b.salePrice || b.originalPrice) -
-              (a.salePrice || a.originalPrice)
+            (b, a) =>
+              (a.salePrice || a.originalPrice) -
+              (b.salePrice || b.originalPrice)
           )
         );
       case "RATING":
@@ -58,10 +68,10 @@ const Books = ({ books: initialBooks }) => {
     );
   };
 
-  // Refilter books when categories are updated
+  // Refilter books when categories or search query are updated
   useEffect(() => {
     filterBooks();
-  }, [selectedCategories]);
+  }, [selectedCategories, searchQuery]);
 
   return (
     <div id="books__body">
@@ -73,38 +83,51 @@ const Books = ({ books: initialBooks }) => {
                 <h2 className="section__title books__header--title">
                   All Books
                 </h2>
-            <div className="filter__options">
-  {/* Category Filter */}
-  <div className="filter__categories">
-    <h4>Filter by Categories</h4>
-    {categories.map((category) => (
-      <div key={category}>
-        <input
-          type="checkbox"
-          id={category}
-          value={category}
-          onChange={() => handleCategoryChange(category)}
-        />
-        <label htmlFor={category}>{category}</label>
-      </div>
-    ))}
-  </div>
 
-  {/* Sorting Filter */}
-  <select
-    id="filter"
-    onChange={(event) => filterBooks(event.target.value)}
-    defaultValue={"DEFAULT"}
-  >
-    <option value="DEFAULT" disabled>
-      Sort
-    </option>
-    <option value="ALPHABETICAL">Alphabetical</option>
-    <option value="LOW_TO_HIGH">Price, Low to High</option>
-    <option value="HIGH_TO_LOW">Price, High to Low</option>
-    <option value="RATING">Rating</option>
-  </select>
-</div>
+                {/* Search Bar */}
+                <div className="search__bar">
+                  <input
+                    type="text"
+                    placeholder="Search books by name..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+
+                {/* Filter and Sort Options */}
+                <div className="filter__options">
+                    <div className="sort__options">
+                    <select
+                      id="filter"
+                      onChange={(event) => filterBooks(event.target.value)}
+                      defaultValue={"DEFAULT"}
+                    >
+                      <option value="DEFAULT" disabled>
+                        Sort
+                      </option>
+                      <option value="ALPHABETICAL">Alphabetical</option>
+                      <option value="LOW_TO_HIGH">Price, Low to High</option>
+                      <option value="HIGH_TO_LOW">Price, High to Low</option>
+                      <option value="RATING">Rating</option>
+                    </select>
+                  </div>
+                  <div className="filter__categories">
+                    <h4>Filter by Categories</h4>
+                    {categories.map((category) => (
+                      <div key={category}>
+                        <input
+                          type="checkbox"
+                          id={category}
+                          value={category}
+                          onChange={() => handleCategoryChange(category)}
+                        />
+                        <label htmlFor={category}>{category}</label>
+                      </div>
+                    ))}
+                  </div>
+
+               
+                </div>
               </div>
 
               <div className="books">
