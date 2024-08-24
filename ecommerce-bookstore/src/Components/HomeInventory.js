@@ -2,7 +2,6 @@ import React from 'react';
 import Item from './Item';
 import "./home.css";
 
-
 const HomeInventory = ({ items }) => {
   return (
     <div className="home-inventory">
