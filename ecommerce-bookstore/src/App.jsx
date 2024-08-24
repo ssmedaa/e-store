@@ -9,6 +9,7 @@ import TopScroll from "./components/ui/TopScroll"
 import { useEffect, useState } from "react";
 import { books } from "./data";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import SignInSignUp from "./pages/SignInSignUp";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
@@ -112,6 +113,16 @@ function updateSmallCart(item, newQuantity) {
     };
   }
 
+  const handleLogin = (email, password) => {
+    // Logic for login
+    return true; // Or false depending on login success
+  };
+
+  const handleSignUp = (email, password) => {
+    // Logic for sign up
+    return true; // Or false depending on sign up success
+  };
+
 function addItemToCart(book) {
     const dupeItem = cart.find((item) => item.id === book.id);
     setCart((oldCart) =>
@@ -148,6 +159,8 @@ useEffect(()=>{
               updateCart={updateCart}
               removeItem={removeItem}
               totals={calcPrices()}/>} />
+              <Route path="/login" element={<SignInSignUp onLogin={handleLogin} onSignUp={handleSignUp} />}
+        />
 
         </Routes>
         <Footer></Footer>
