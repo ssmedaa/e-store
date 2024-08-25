@@ -5,8 +5,8 @@ const {
   getCustomerById,
   updateCustomerById,
   getAllCustomers,
-  getCustomerByEmail,
-  updateCustomerByEmail
+  checkAdmin,
+  countCustomers
 } = require('../controllers/customerController')
 
 const router = express.Router()
@@ -16,6 +16,8 @@ router.post('/signin', signInCustomer)
 router.get('/:id', getCustomerById);
 router.put('/:id', updateCustomerById);
 router.get('/',getAllCustomers);
+router.get('/checkAdmin/:id',checkAdmin);
+router.head('/count',countCustomers);
 
 module.exports = router
 
