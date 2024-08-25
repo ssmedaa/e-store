@@ -25,8 +25,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 Navigate to the server directory and install the necessary packages:
 
 
-```cd server```
-```npm install```
+```cd server npm install```
 ```cd ../ecommerce-bookstore```
 ```npm install```
 
