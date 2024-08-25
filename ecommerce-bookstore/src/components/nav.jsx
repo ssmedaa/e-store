@@ -24,6 +24,11 @@ function Nav({numberOfItems}) {
               Books
             </Link>
           </li>
+           <li className="nav__list">
+            <Link to="/profile" className="nav__link">
+              Profile
+            </Link>
+          </li>
            <button className="btn__menu" onClick={openMenu}>
           <FontAwesomeIcon icon="bars"></FontAwesomeIcon>
         </button>
@@ -66,6 +71,7 @@ function Nav({numberOfItems}) {
        <li className="menu__list">
      <Link to="/books" className="menu__link" onClick={closeMenu}>Books</Link>
      </li>
+     
        <li className="menu__list">
      <Link to="/cart" className="menu__link" onClick={closeMenu}>Cart</Link>
      </li>
@@ -74,6 +80,9 @@ function Nav({numberOfItems}) {
                 Login
               </Link>
             </li>
+             <li className="menu__list">
+     <Link to="/cart" className="menu__link" onClick={closeMenu}>Cart</Link>
+     </li>
      </ul>
      </div>
       </div>
