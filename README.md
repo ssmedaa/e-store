@@ -17,7 +17,16 @@ Follow these instructions to get a copy of the project up and running on your lo
 
    Open your terminal and run the following command to clone the repository:
 
+```   git clone https://github.com/ssmedaa/e-store.git```
+   cd e-store
    
+ 2.### Install Dependencies
+
+Navigate to the server directory and install the necessary packages:
+
+
+```cd server```
+```npm install```
 
 ## SQL Scripts
 
