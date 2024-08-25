@@ -1,0 +1,55 @@
+/* TempComponent.css */
+
+/* General styling for the component */
+div {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  h1 {
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #3498db;
+    margin-bottom: 20px;
+  }
+  
+  /* Error message styling */
+  p {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  thead {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  th {
+    border-bottom: 2px solid #ddd;
+  }
+  
