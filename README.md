@@ -20,9 +20,9 @@ Follow these instructions to get a copy of the project up and running on your lo
    
 bash
    git clone https://github.com/ssmedaa/e-store.git
-   ## SQL Scripts
 ## SQL Scripts
-sql
+
+```sql
 -- Select the database
 USE harrypotter;
 
@@ -88,4 +88,3 @@ INSERT INTO OrderItems (orderId, bookId, purchaseQty) VALUES
 (1, 101, 2),  -- Order 1 has book 101 with quantity 2
 (1, 102, 1),  -- Order 1 has book 102 with quantity 1
 -- Add more rows as needed...
-" in herre only nowhere else
