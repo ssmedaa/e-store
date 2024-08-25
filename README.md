@@ -1,4 +1,25 @@
-## SQL Scripts
+# E-Store Project
+
+This project is a full-stack e-commerce application built using Node.js, Express, React, and MySQL.
+
+## Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- Node.js and npm installed on your local machine
+- MySQL installed and running
+
+### Installing
+
+1. **Clone the repository:**
+
+   Open your terminal and run the following command to clone the repository:
+
+   ```bash
+   git clone https://github.com/ssmedaa/e-store.git
+   ## SQL Scripts
 
 ```sql
 -- Select the database
