@@ -20,12 +20,14 @@ Follow these instructions to get a copy of the project up and running on your lo
 ```   git clone https://github.com/ssmedaa/e-store.git```
    cd e-store
    
- 2.### Install Dependencies
+ 1. **Install Dependencies:**
 
 Navigate to the server directory and install the necessary packages:
 
 
 ```cd server```
+```npm install```
+```cd ../ecommerce-bookstore```
 ```npm install```
 
 ## SQL Scripts
