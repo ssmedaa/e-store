@@ -15,8 +15,7 @@ app.get('/', (req, res) => {
 
 // Mount the routes
 app.use("/api/customer", customerRoutes);
-app.use('/api/books', bookRoutes); // This is critical to mount bookRoutes
-=======
+app.use("/api/books", bookRoutes); // Use book routes for paths under /api/books
 app.use("/api/order", orderRoutes);
 
 const PORT = process.env.PORT || 3000;

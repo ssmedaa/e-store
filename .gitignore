@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
+.pnp
 /server/node_modules/
 # testing
 /coverage
@@ -23,5 +23,4 @@
 *.yml
 *.cmd
 *.md
-*.js
 server/package-lock.json
