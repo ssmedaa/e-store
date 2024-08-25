@@ -21,15 +21,15 @@ const Order = sequelize.define('Order', {
   },
   shippingAddress: {
     type: DataTypes.STRING,
-    allowNull: true, // This field can be NULL
+    allowNull: true, // Optional
   },
   price: {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
 }, {
-  tableName: 'Orders', // Rename the table to avoid reserved keywords
-  timestamps: false,   // Disable createdAt and updatedAt fields
+  tableName: 'Orders',
+  timestamps: false, // Disable timestamps if not needed
 });
 
 module.exports = Order;

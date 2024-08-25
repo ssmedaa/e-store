@@ -10,10 +10,12 @@ const OrderItem = sequelize.define('OrderItem', {
       model: Order,
       key: 'id',
     },
+    primaryKey: true, // Composite primary key
   },
   bookId: {
     type: DataTypes.BIGINT,
     allowNull: false,
+    primaryKey: true, // Composite primary key
   },
   purchaseQty: {
     type: DataTypes.INTEGER,
@@ -21,7 +23,11 @@ const OrderItem = sequelize.define('OrderItem', {
   },
 }, {
   tableName: 'OrderItems',
-  timestamps: false,
+  timestamps: false, // Disable timestamps if not needed
 });
 
+OrderItem.belongsTo(Order, { foreignKey: 'orderId', as: 'Order' });
+Order.hasMany(OrderItem, { foreignKey: 'orderId', as: 'OrderItems' });
+
 module.exports = OrderItem;
+
