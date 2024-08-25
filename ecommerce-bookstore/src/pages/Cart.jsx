@@ -18,8 +18,8 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
     const { error } = await stripe.redirectToCheckout({
       lineItems,
       mode: "payment",
-      successUrl: "https://nba-trading-cards.vercel.app/", // URL to redirect to after successful payment
-      cancelUrl: "https://nba-trading-cards.vercel.app/", // URL to redirect to if payment is canceled
+      successUrl: "http://localhost:3001/", // URL to redirect to after successful payment
+      cancelUrl: "http://localhost:3001/", // URL to redirect to if payment is canceled
     });
 
     // Handle any errors
