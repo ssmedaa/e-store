@@ -44,7 +44,7 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
               </div>
               <div className="cart__body">
                 {cart.map((item) => {
-                  const itemPrice = item.salePrice || item.originalPrice;
+                  const itemPrice = parseFloat(item.salePrice || item.originalPrice) || 0;
                   return (
                     <div className="cart__item" key={item.id}>
                       <div className="cart__book">
@@ -101,15 +101,15 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
               <div className="total">
                 <div className="total__item total__sub-total">
                   <span>Subtotal</span>
-                  <span>${totals.subtotal.toFixed(2)}</span>
+                  <span>${Number(totals.subtotal || 0).toFixed(2)}</span>
                 </div>
                 <div className="total__item total__tax">
                   <span>Tax</span>
-                  <span>${totals.tax.toFixed(2)}</span>
+                  <span>${Number(totals.tax || 0).toFixed(2)}</span>
                 </div>
                 <div className="total__item total__price">
                   <span>Total</span>
-                  <span>${totals.total.toFixed(2)}</span>
+                  <span>${Number(totals.total || 0).toFixed(2)}</span>
                 </div>
                 <button className="btn btn__checkout" onClick={redirectToCheckout}>
                   Proceed to checkout
