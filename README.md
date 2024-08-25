@@ -20,15 +20,34 @@ Follow these instructions to get a copy of the project up and running on your lo
 ```   git clone https://github.com/ssmedaa/e-store.git```
    cd e-store
    
- 1. **Install Dependencies:**
+ 2. **Install Dependencies:**
 
-Navigate to the server directory and install the necessary packages:
-
-
+Navigate to the Server directory and install the necessary packages:
 ```cd server npm install```
+Navigate to the Client directory and install the necessary packages:
+
 ```cd ../ecommerce-bookstore```
 ```npm install```
+3. **Run Server:**
 
+Navigate to the `server` directory, install the necessary packages, and run the server:
+```node app.js```
+
+Then, navigate to the ecommerce-bookstore directory, install the dependencies, and start the frontend application:
+cd ../ecommerce-bookstore
+```npm start```
+
+
+### Database Setup
+
+The application uses a NoSQL database. To set it up, follow these steps:
+
+- Database: `harryPotter`
+- User: `root`
+- Password: `EECS4413`
+- Host: `localhost`
+
+Make sure you create the database and set up the necessary credentials in your environment configuration and run the scripts.
 ## SQL Scripts
 
 ```sql
