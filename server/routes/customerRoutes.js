@@ -5,8 +5,6 @@ const {
   getCustomerById,
   updateCustomerById,
   getAllCustomers,
-  getCustomerByEmail,
-  updateCustomerByEmail
 } = require('../controllers/customerController')
 
 const router = express.Router()
