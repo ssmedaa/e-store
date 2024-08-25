@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/empty_cart.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = ({ cart, updateCart, removeItem, totals }) => {
   const redirectToCheckout = async () => {
     const stripe = await loadStripe('pk_test_51Ovo0GDH16DQa3RUI27zpTHUDIItjatyTGv7UGkuHM2bDgbjvW0T7zxo5GcvUoYq1lO8Sm4IQrNKhQ06Lzf6I9gE00a6BYfFeB');
-    
+
     // Prepare line items for Stripe Checkout
     const lineItems = cart.map(item => ({
       price: item.stripeID, // Replace with the Stripe price ID for your product
@@ -17,14 +17,14 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
     // Redirect to Stripe Checkout
     const { error } = await stripe.redirectToCheckout({
       lineItems,
-      mode: 'payment',
-      successUrl: 'https://nba-trading-cards.vercel.app/', // URL to redirect to after successful payment
-      cancelUrl: 'https://nba-trading-cards.vercel.app/', // URL to redirect to if payment is canceled
+      mode: "payment",
+      successUrl: "https://nba-trading-cards.vercel.app/", // URL to redirect to after successful payment
+      cancelUrl: "https://nba-trading-cards.vercel.app/", // URL to redirect to if payment is canceled
     });
 
     // Handle any errors
     if (error) {
-      console.error('Error redirecting to checkout:', error);
+      console.error("Error redirecting to checkout:", error);
     }
   };
 
@@ -44,26 +44,15 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
               </div>
               <div className="cart__body">
                 {cart.map((item) => {
-                  const itemPrice = item.salePrice || item.originalPrice;
+                  const itemPrice = parseFloat(item.salePrice) || parseFloat(item.originalPrice) || 0;
                   return (
                     <div className="cart__item" key={item.id}>
                       <div className="cart__book">
-                        <img
-                          className="cart__book--img"
-                          src={item.url}
-                          alt=""
-                        />
+                        <img className="cart__book--img" src={item.url} alt="" />
                         <div className="cart__book--info">
-                          <span className="cart__book--title">
-                            {item.title}
-                          </span>
-                          <span className="cart__book--price">
-                            ${itemPrice.toFixed(2)}
-                          </span>
-                          <button
-                            className="cart__book--remove"
-                            onClick={() => removeItem(item)}
-                          >
+                          <span className="cart__book--title">{item.title}</span>
+                          <span className="cart__book--price">${itemPrice.toFixed(2)}</span>
+                          <button className="cart__book--remove" onClick={() => removeItem(item)}>
                             <FontAwesomeIcon icon="fa-solid fa-x" />Remove
                           </button>
                         </div>
@@ -75,9 +64,7 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
                           min={0}
                           max={10}
                           value={item.quantity}
-                          onChange={(event) =>
-                            updateCart(item, event.target.value)
-                          }
+                          onChange={(event) => updateCart(item, event.target.value)}
                         />
                       </div>
                       <div className="cart__total">
