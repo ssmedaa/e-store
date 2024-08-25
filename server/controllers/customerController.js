@@ -116,4 +116,28 @@ const getAllCustomers = async (req, res) => {
     }
 };
 
-module.exports = {signUpCustomer, signInCustomer, getCustomerById, getAllCustomers, updateCustomerById}
+// GET /api/customer/checkAdmin/:id: Check if customer with id is an admin or not
+const checkAdmin = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find the customer by ID
+    const customer = await Customer.findByPk(id);
+
+    if (!customer) {
+      return res.status(404).json({ message: 'Customer not found.' });
+    }
+
+    // Check if the customer is an admin
+    if (customer.isAdmin) {
+      return res.status(200).json({ isAdmin: true, message: 'Customer is an admin.' });
+    } else {
+      return res.status(200).json({ isAdmin: false, message: 'Customer is not an admin.' });
+    }
+  } catch (error) {
+    console.error('Error checking admin status:', error);
+    res.status(500).json({ message: 'Server error. Failed to check admin status.' });
+  }
+};
+
+module.exports = {signUpCustomer, signInCustomer, getCustomerById, getAllCustomers, updateCustomerById, checkAdmin}
