@@ -5,9 +5,9 @@ import Books from "./pages/Books";
 import Footer from "./components/Footer";
 import BookInfo from "./pages/BookInfo";
 import Cart from "./pages/Cart";
-import TopScroll from "./components/ui/TopScroll"
+import TopScroll from "./components/ui/TopScroll";
 import { useEffect, useState } from "react";
-import { books } from "./data";
+import axios from "axios";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignInSignUp from "./pages/SignInSignUp";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -23,6 +23,7 @@ import {
   faArrowLeft,
   faX,
 } from "@fortawesome/free-solid-svg-icons";
+
 library.add(
   faBars,
   faShoppingCart,
@@ -35,46 +36,59 @@ library.add(
   faArrowLeft,
   faX
 );
-function App() {
-    const [added, setAdded] = useState(false);
-    const [cart,setCart]=useState([])
-    function changeQuanity(book,quantity){
-      setCart(cart.map(item=>{
-  if(book.id===item.id){
-    return{
-      ...item,
-      quantity:+quantity,
-      
-    }
-  }
-  else{
-    return{
-      ...item
-    }
-  }
-      }))
-            console.log(book,quantity)
 
-      console.log(book.quantity)
-    }
-    
-    function removeItem(item) {
-    setCart((oldCart) => oldCart.filter((cartItem) => cartItem.id !== item.id));
+function App() {
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+  const [cart, setCart] = useState([]);
+  const [added, setAdded] = useState(false);
+
+  useEffect(() => {
+    // Fetch books from the backend
+    axios.get("http://localhost:3000/api/books")
+      .then(response => {
+        setBooks(response.data);
+        setLoading(false); // Set loading to false when data is fetched
+      })
+      .catch(error => {
+        setError("There was an error fetching the books!");
+        setLoading(false); // Set loading to false in case of error
+      });
+  }, []);
+
+  function changeQuantity(book, quantity) {
+    setCart(cart.map(item => {
+      if (book.id === item.id) {
+        return {
+          ...item,
+          quantity: +quantity,
+        };
+      } else {
+        return {
+          ...item,
+        };
+      }
+    }));
+    console.log(book, quantity);
   }
-   function numberOfItems() {
+
+  function removeItem(item) {
+    setCart(oldCart => oldCart.filter(cartItem => cartItem.id !== item.id));
+  }
+
+  function numberOfItems() {
     let counter = 0;
-    cart.forEach((item) => {
+    cart.forEach(item => {
       counter += +item.quantity;
     });
-        console.log(counter)
-
+    console.log(counter);
     return counter;
   }
- 
-  
-function updateCart(item, newQuantity) {
-    setCart((oldCart) =>
-      oldCart.map((oldItem) => {
+
+  function updateCart(item, newQuantity) {
+    setCart(oldCart =>
+      oldCart.map(oldItem => {
         if (oldItem.id === item.id) {
           return {
             ...oldItem,
@@ -87,9 +101,9 @@ function updateCart(item, newQuantity) {
     );
   }
 
-function updateSmallCart(item, newQuantity) {
-    setCart((oldCart) =>
-      oldCart.map((oldItem) => {
+  function updateSmallCart(item, newQuantity) {
+    setCart(oldCart =>
+      oldCart.map(oldItem => {
         if (oldItem.id === item.id) {
           return {
             ...oldItem,
@@ -101,9 +115,10 @@ function updateSmallCart(item, newQuantity) {
       })
     );
   }
+
   function calcPrices() {
     let total = 0;
-    cart.forEach((item) => {
+    cart.forEach(item => {
       total += (item.salePrice || item.originalPrice) * item.quantity;
     });
     return {
@@ -123,12 +138,12 @@ function updateSmallCart(item, newQuantity) {
     return true; // Or false depending on sign up success
   };
 
-function addItemToCart(book) {
-    const dupeItem = cart.find((item) => item.id === book.id);
-    setCart((oldCart) =>
+  function addItemToCart(book) {
+    const dupeItem = cart.find(item => item.id === book.id);
+    setCart(oldCart =>
       dupeItem
         ? [
-            ...oldCart.map((item) => {
+            ...oldCart.map(item => {
               return item.id === dupeItem.id
                 ? {
                     ...item,
@@ -136,32 +151,62 @@ function addItemToCart(book) {
                   }
                 : item;
             }),
-            
           ]
         : [...oldCart, { ...book, quantity: 1 }]
-        
     );
-     setAdded(true)
+    setAdded(true);
   }
-useEffect(()=>{
-  console.log(cart)
-},[cart])
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
+  // Handle loading and error states
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <Router>
-    <TopScroll/>
+      <TopScroll />
       <div className="App">
         <Nav numberOfItems={numberOfItems()}></Nav>
         <Routes>
           <Route path="/" Component={Home}></Route>
-        <Route path="/books" Component={() => <Books books={books} />} />
-        <Route path="/books/:id" Component={() => (<BookInfo books={books} addItemToCart={addItemToCart} key={books.id} cart={cart} removeItem={removeItem} totals={calcPrices()} updateSmallCart={updateSmallCart}/> )}></Route>
-        <Route path="/cart" Component={() => <Cart cart={cart}
-              updateCart={updateCart}
-              removeItem={removeItem}
-              totals={calcPrices()}/>} />
-              <Route path="/login" element={<SignInSignUp onLogin={handleLogin} onSignUp={handleSignUp} />}
-        />
-
+          <Route path="/books" Component={() => <Books books={books} />} />
+          <Route
+            path="/books/:id"
+            Component={() => (
+              <BookInfo
+                books={books}
+                addItemToCart={addItemToCart}
+                key={books.id}
+                cart={cart}
+                removeItem={removeItem}
+                totals={calcPrices()}
+                updateSmallCart={updateSmallCart}
+              />
+            )}
+          ></Route>
+          <Route
+            path="/cart"
+            Component={() => (
+              <Cart
+                cart={cart}
+                updateCart={updateCart}
+                removeItem={removeItem}
+                totals={calcPrices()}
+              />
+            )}
+          />
+          <Route
+            path="/login"
+            element={<SignInSignUp onLogin={handleLogin} onSignUp={handleSignUp} />}
+          />
         </Routes>
         <Footer></Footer>
       </div>
