@@ -18,9 +18,16 @@ Follow these instructions to get a copy of the project up and running on your lo
    Open your terminal and run the following command to clone the repository:
 
    
-bash
-   git clone https://github.com/ssmedaa/e-store.git
+```bash
+git clone https://github.com/ssmedaa/e-store.git
+cd e-store
+cd server
+npm install
+cd ../ecommerce-bookstore
+npm install```
+
 ## SQL Scripts
+
 
 ```sql
 -- Select the database
