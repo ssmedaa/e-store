@@ -28,7 +28,8 @@ Navigate to the Client directory and install the necessary packages:
 
 ```cd ../ecommerce-bookstore```
 ```npm install```
-3. **Run Server:**
+   
+ 3. **Run Server:**
 
 Navigate to the `server` directory, install the necessary packages, and run the server:
 ```node app.js```
