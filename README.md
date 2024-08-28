@@ -38,6 +38,10 @@ Then, navigate to the ecommerce-bookstore directory, install the dependencies, a
 cd ../ecommerce-bookstore
 ```npm start```
 
+### Admin credential 
+
+Email: billy@gmail.com 
+Password: 12345678 
 
 ### Database Setup
 
